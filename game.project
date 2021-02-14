@@ -20,3 +20,6 @@ developer = Klayton Kowalski
 show_fullscreen_button = 0
 scale_mode = no_scale
 
+[tilemap]
+max_tile_count = 14400
+

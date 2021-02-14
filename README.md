@@ -10,4 +10,11 @@ Please click the "Star" button on GitHub if you find this asset to be useful!
 
 ## Controls
 The demo uses the following controls:
-  - <1> ?
+  - <Hold A> Modify amplitude
+  - <Hold F> Modify frequency
+  - <Hold O> Modify octaves
+  - <Hold L> Modify lacunarity
+  - <Hold P> Modify persistence
+  - <Up> Increase value
+  - <Down> Decrease value
+  - <Enter> Generate new map

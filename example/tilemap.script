@@ -37,32 +37,154 @@ local simplex = require "example.simplex"
 -- PROPERTIES
 ----------------------------------------------------------------------
 
-go.property("width", 160)
-go.property("height", 90)
+local width = 160
+local height = 90
+
+local tilesource = 1
+go.property("tilesource_1", resource.tile_source("/example/tilesource_1.tilesource"))
+go.property("tilesource_2", resource.tile_source("/example/tilesource_2.tilesource"))
 
 local grid
+
+local height_max = 16
+local height_min = 1
+local amplitude_max = height_max / 2
+local frequency_max = 0.050
+local octaves = 2
+local lacunarity = 2
+local persistence = 0.5
+
+local input = { a = false, f = false, o = false, l = false, p = false }
+local seed
 
 ----------------------------------------------------------------------
 -- FUNCTIONS
 ----------------------------------------------------------------------
 
-local function draw(self)
-	for i = 1, self.height do
-		for j = 1, self.width do
+local function draw()
+	for i = 1, height do
+		for j = 1, width do
 			tilemap.set_tile("#tilemap", "layer_1", j, i, grid[i][j])
+		end
+	end
+end
+
+local function fractal_brownian_motion()
+	math.randomseed(seed)
+	local offset_x = math.random(-999999, 999999)
+	local offset_y = math.random(-999999, 999999)
+	for i = 1, height do
+		for j = 1, width do
+			local noise = height_max / 2
+			local frequency = frequency_max
+			local amplitude = amplitude_max
+			for k = 1, octaves do
+				local sample_x = j * frequency + offset_x
+				local sample_y = i * frequency + offset_y
+				noise = noise + simplex.Noise2D(sample_x, sample_y) * amplitude
+				frequency = frequency * lacunarity
+				amplitude = amplitude * persistence
+			end
+			noise = util.clamp(height_min, height_max, util.round(noise))
+			grid[i][j] = noise
 		end
 	end
 end
 
 function init(self)
 	msg.post("#", util.acquire_input_focus)
-	math.randomseed(os.clock() * 100000000000)
-	grid = util.get_table(self.height, self.width, 1)
-	draw(self)
+	seed = os.clock() * 100000000000
+	grid = util.get_table(height, width, 0)
+	fractal_brownian_motion()
+	draw()
 end
 
 function on_input(self, action_id, action)
 	if action.pressed then
-		
+		if action_id == util.a then
+			input.a = true
+		elseif action_id == util.f then
+			input.f = true
+		elseif action_id == util.o then
+			input.o = true
+		elseif action_id == util.l then
+			input.l = true
+		elseif action_id == util.p then
+			input.p = true
+		elseif action_id == util.up then
+			if input.a then
+				amplitude_max = util.clamp(height_min, height_max, amplitude_max + 1)
+				msg.post("/gui#gui", util.modify_amplitude, { value = amplitude_max })
+				fractal_brownian_motion()
+				draw()
+			elseif input.f then
+				frequency_max = util.clamp(0.01, 0.1, frequency_max + 0.01)
+				msg.post("/gui#gui", util.modify_frequency, { value = frequency_max })
+				fractal_brownian_motion()
+				draw()
+			elseif input.o then
+				octaves = util.clamp(1, 8, octaves + 1)
+				msg.post("/gui#gui", util.modify_octaves, { value = octaves })
+				fractal_brownian_motion()
+				draw()
+			elseif input.l then
+				lacunarity = util.clamp(0.1, 2.0, lacunarity + 0.1)
+				msg.post("/gui#gui", util.modify_lacunarity, { value = lacunarity })
+				fractal_brownian_motion()
+				draw()
+			elseif input.p then
+				persistence = util.clamp(0.1, 2.0, persistence + 0.1)
+				msg.post("/gui#gui", util.modify_persistence, { value = persistence })
+				fractal_brownian_motion()
+				draw()
+			end
+		elseif action_id == util.down then
+			if input.a then
+				amplitude_max = util.clamp(height_min, height_max, amplitude_max - 1)
+				msg.post("/gui#gui", util.modify_amplitude, { value = amplitude_max })
+				fractal_brownian_motion()
+				draw()
+			elseif input.f then
+				frequency_max = util.clamp(0.01, 0.1, frequency_max - 0.01)
+				msg.post("/gui#gui", util.modify_frequency, { value = frequency_max })
+				fractal_brownian_motion()
+				draw()
+			elseif input.o then
+				octaves = util.clamp(1, 8, octaves - 1)
+				msg.post("/gui#gui", util.modify_octaves, { value = octaves })
+				fractal_brownian_motion()
+				draw()
+			elseif input.l then
+				lacunarity = util.clamp(0.1, 2.0, lacunarity - 0.1)
+				msg.post("/gui#gui", util.modify_lacunarity, { value = lacunarity })
+				fractal_brownian_motion()
+				draw()
+			elseif input.p then
+				persistence = util.clamp(0.1, 2.0, persistence - 0.1)
+				msg.post("/gui#gui", util.modify_persistence, { value = persistence })
+				fractal_brownian_motion()
+				draw()
+			end
+		elseif action_id == util.enter then
+			seed = os.clock() * 100000000000
+			fractal_brownian_motion()
+			draw()
+		elseif action_id == util.c then
+			go.set("#tilemap", "tile_source", tilesource == 1 and self.tilesource_2 or self.tilesource_1)
+			tilesource = tilesource == 1 and 2 or 1
+			draw()
+		end
+	elseif action.released then
+		if action_id == util.a then
+			input.a = false
+		elseif action_id == util.f then
+			input.f = false
+		elseif action_id == util.o then
+			input.o = false
+		elseif action_id == util.l then
+			input.l = false
+		elseif action_id == util.p then
+			input.p = false
+		end
 	end
 end

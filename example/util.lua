@@ -46,6 +46,29 @@ util.trigger_response = hash("trigger_response")
 util.unload = hash("unload")
 util.window_resized = hash("window_resized")
 
+util.a = hash("a")
+util.f = hash("f")
+util.o = hash("o")
+util.l = hash("l")
+util.p = hash("p")
+util.up = hash("up")
+util.down = hash("down")
+util.enter = hash("enter")
+util.c = hash("c")
+
+util.modify_amplitude = hash("modify_amplitude")
+util.modify_frequency = hash("modify_frequency")
+util.modify_octaves = hash("modify_octaves")
+util.modify_lacunarity = hash("modify_lacunarity")
+util.modify_persistence = hash("modify_persistence")
+util.generate_new_map = hash("generate_new_map")
+
+util.amplitude = hash("amplitude")
+util.frequency = hash("frequency")
+util.octaves = hash("octaves")
+util.lacunarity = hash("lacunarity")
+util.persistence = hash("persistence")
+
 function util.get_table(rows, columns, value)
 	local result = {}
 	for i = 1, rows do

@@ -1,0 +1,36 @@
+key_trigger {
+  input: KEY_A
+  action: "a"
+}
+key_trigger {
+  input: KEY_F
+  action: "f"
+}
+key_trigger {
+  input: KEY_O
+  action: "o"
+}
+key_trigger {
+  input: KEY_L
+  action: "l"
+}
+key_trigger {
+  input: KEY_P
+  action: "p"
+}
+key_trigger {
+  input: KEY_UP
+  action: "up"
+}
+key_trigger {
+  input: KEY_DOWN
+  action: "down"
+}
+key_trigger {
+  input: KEY_ENTER
+  action: "enter"
+}
+key_trigger {
+  input: KEY_C
+  action: "c"
+}

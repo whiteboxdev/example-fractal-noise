@@ -1,5 +1,15 @@
 local util = require "example.util"
 
 function on_message(self, message_id, message, sender)
-	
+	if message_id == util.modify_amplitude then
+		gui.set_text(gui.get_node(util.amplitude), "Amplitude = " .. message.value)
+	elseif message_id == util.modify_frequency then
+		gui.set_text(gui.get_node(util.frequency), "Frequency = " .. string.format("%.3f", message.value))
+	elseif message_id == util.modify_octaves then
+		gui.set_text(gui.get_node(util.octaves), "Octaves = " .. message.value)
+	elseif message_id == util.modify_lacunarity then
+		gui.set_text(gui.get_node(util.lacunarity), "Lacunarity = " .. string.format("%.1f", message.value))
+	elseif message_id == util.modify_persistence then
+		gui.set_text(gui.get_node(util.persistence), "Persistence = " .. string.format("%.1f", message.value))
+	end
 end
