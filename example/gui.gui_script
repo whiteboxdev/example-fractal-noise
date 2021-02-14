@@ -1,0 +1,5 @@
+local util = require "example.util"
+
+function on_message(self, message_id, message, sender)
+	
+end

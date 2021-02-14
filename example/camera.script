@@ -1,0 +1,5 @@
+local util = require "example.util"
+
+function init(self)
+	msg.post("#camera", util.acquire_camera_focus)
+end

@@ -1,0 +1,68 @@
+----------------------------------------------------------------------
+-- LICENSE
+----------------------------------------------------------------------
+
+-- MIT License
+
+-- Copyright (c) 2021 Klayton Kowalski
+
+-- Permission is hereby granted, free of charge, to any person obtaining a copy
+-- of this software and associated documentation files (the "Software"), to deal
+-- in the Software without restriction, including without limitation the rights
+-- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-- copies of the Software, and to permit persons to whom the Software is
+-- furnished to do so, subject to the following conditions:
+
+-- The above copyright notice and this permission notice shall be included in all
+-- copies or substantial portions of the Software.
+
+-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+-- SOFTWARE.
+
+-- https://github.com/klaytonkowalski/example-fractal-brownian-motion
+
+----------------------------------------------------------------------
+-- DEPENDENCIES
+----------------------------------------------------------------------
+
+local util = require "example.util"
+local simplex = require "example.simplex"
+
+----------------------------------------------------------------------
+-- PROPERTIES
+----------------------------------------------------------------------
+
+go.property("width", 160)
+go.property("height", 90)
+
+local grid
+
+----------------------------------------------------------------------
+-- FUNCTIONS
+----------------------------------------------------------------------
+
+local function draw(self)
+	for i = 1, self.height do
+		for j = 1, self.width do
+			tilemap.set_tile("#tilemap", "layer_1", j, i, grid[i][j])
+		end
+	end
+end
+
+function init(self)
+	msg.post("#", util.acquire_input_focus)
+	math.randomseed(os.clock() * 100000000000)
+	grid = util.get_table(self.height, self.width, 1)
+	draw(self)
+end
+
+function on_input(self, action_id, action)
+	if action.pressed then
+		
+	end
+end
