@@ -12,7 +12,7 @@ height = 720
 input_method = HiddenInputField
 
 [project]
-title = Fractal Brownian Motion
+title = Fractal Noise
 publisher = Klayton Kowalski
 developer = Klayton Kowalski
 
