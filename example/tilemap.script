@@ -24,7 +24,7 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 -- SOFTWARE.
 
--- https://github.com/klaytonkowalski/example-fractal-brownian-motion
+-- https://github.com/klaytonkowalski/example-fractal-noise
 
 ----------------------------------------------------------------------
 -- DEPENDENCIES
@@ -69,7 +69,7 @@ local function draw()
 	end
 end
 
-local function fractal_brownian_motion()
+local function fractal_noise()
 	math.randomseed(seed)
 	local offset_x = math.random(-999999, 999999)
 	local offset_y = math.random(-999999, 999999)
@@ -95,7 +95,7 @@ function init(self)
 	msg.post("#", util.acquire_input_focus)
 	seed = os.clock() * 100000000000
 	grid = util.get_table(height, width, 0)
-	fractal_brownian_motion()
+	fractal_noise()
 	draw()
 end
 
@@ -115,59 +115,59 @@ function on_input(self, action_id, action)
 			if input.a then
 				amplitude_max = util.clamp(height_min, height_max, amplitude_max + 1)
 				msg.post("/gui#gui", util.modify_amplitude, { value = amplitude_max })
-				fractal_brownian_motion()
+				fractal_noise()
 				draw()
 			elseif input.f then
 				frequency_max = util.clamp(0.01, 0.1, frequency_max + 0.01)
 				msg.post("/gui#gui", util.modify_frequency, { value = frequency_max })
-				fractal_brownian_motion()
+				fractal_noise()
 				draw()
 			elseif input.o then
 				octaves = util.clamp(1, 8, octaves + 1)
 				msg.post("/gui#gui", util.modify_octaves, { value = octaves })
-				fractal_brownian_motion()
+				fractal_noise()
 				draw()
 			elseif input.l then
 				lacunarity = util.clamp(0.1, 2.0, lacunarity + 0.1)
 				msg.post("/gui#gui", util.modify_lacunarity, { value = lacunarity })
-				fractal_brownian_motion()
+				fractal_noise()
 				draw()
 			elseif input.p then
 				persistence = util.clamp(0.1, 2.0, persistence + 0.1)
 				msg.post("/gui#gui", util.modify_persistence, { value = persistence })
-				fractal_brownian_motion()
+				fractal_noise()
 				draw()
 			end
 		elseif action_id == util.down then
 			if input.a then
 				amplitude_max = util.clamp(height_min, height_max, amplitude_max - 1)
 				msg.post("/gui#gui", util.modify_amplitude, { value = amplitude_max })
-				fractal_brownian_motion()
+				fractal_noise()
 				draw()
 			elseif input.f then
 				frequency_max = util.clamp(0.01, 0.1, frequency_max - 0.01)
 				msg.post("/gui#gui", util.modify_frequency, { value = frequency_max })
-				fractal_brownian_motion()
+				fractal_noise()
 				draw()
 			elseif input.o then
 				octaves = util.clamp(1, 8, octaves - 1)
 				msg.post("/gui#gui", util.modify_octaves, { value = octaves })
-				fractal_brownian_motion()
+				fractal_noise()
 				draw()
 			elseif input.l then
 				lacunarity = util.clamp(0.1, 2.0, lacunarity - 0.1)
 				msg.post("/gui#gui", util.modify_lacunarity, { value = lacunarity })
-				fractal_brownian_motion()
+				fractal_noise()
 				draw()
 			elseif input.p then
 				persistence = util.clamp(0.1, 2.0, persistence - 0.1)
 				msg.post("/gui#gui", util.modify_persistence, { value = persistence })
-				fractal_brownian_motion()
+				fractal_noise()
 				draw()
 			end
 		elseif action_id == util.enter then
 			seed = os.clock() * 100000000000
-			fractal_brownian_motion()
+			fractal_noise()
 			draw()
 		elseif action_id == util.c then
 			go.set("#tilemap", "tile_source", tilesource == 1 and self.tilesource_2 or self.tilesource_1)
