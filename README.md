@@ -2,7 +2,7 @@
 Demonstration of fractal noise and procedural map generation.
 
 Watch the reference video: https://www.youtube.com/watch?v=Z6m7tFztEvw  
-Play with the interactive HTML5 demo: https://klaytonkowalski.github.io/bundles/example-fractal-noise/index.html
+Play with the interactive HTML5 demo: https://klaytonkowalski.github.io/bundles/fractal-noise/index.html
 
 Please click the "Star" button on GitHub if you find this asset to be useful!
 
