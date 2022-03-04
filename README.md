@@ -1,5 +1,5 @@
 # Fractal Noise
-Demonstration of fractal noise and procedural map generation.
+Example of fractal noise and procedural map generation.
 
 Watch the reference video: https://www.youtube.com/watch?v=Z6m7tFztEvw  
 Play with the interactive HTML5 demo: https://klaytonkowalski.github.io/bundles/fractal-noise/index.html
