@@ -1,5 +1,5 @@
 # Fractal Noise
-Example of fractal noise and procedural map generation.
+Example of fractal noise and procedural generation.
 
 Watch the reference video:  
 https://www.youtube.com/watch?v=Z6m7tFztEvw
