@@ -1,4 +1,5 @@
 # Fractal Noise
+
 Example of fractal noise and procedural generation.
 
 Watch the reference video:  
@@ -13,11 +14,16 @@ Please click the ☆ button on GitHub if this repository is useful or interestin
 
 ## Controls
 
-\<Hold A\> Modify the amplitude.  
-\<Hold F\> Modify the frequency.  
-\<Hold O\> Modify the octaves.  
-\<Hold L\> Modify the lacunarity.  
-\<Hold P\> Modify the persistence.  
-\<Up\> Increase the held modifier value.  
-\<Down\> Decrease the held modifier value.  
-\<Enter\> Generate a new map.
+| Control | Description |
+| ------- | ----------- |
+| A + Up | Increase the amplitude. |
+| A + Down | Decrease the amplitude. |
+| F + Up | Increase the frequency. |
+| F + Down | Decrease the frequency. |
+| O + Up | Increase the octaves. |
+| O + Down | Decrease the octaves. |
+| L + Up | Increase the lacunarity. |
+| L + Down | Decrease the lacunarity. |
+| P + Up | Increase the persistence. |
+| P + Down | Decrease the persistence. |
+| Enter | Generate a new map. |
