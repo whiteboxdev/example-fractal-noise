@@ -6,11 +6,11 @@ Watch the reference video:
 https://www.youtube.com/watch?v=Z6m7tFztEvw
 
 Play with the interactive HTML5 demo:  
-https://klaytonkowalski.github.io/bundles/fractal-noise/index.html
+https://whiteboxdev.github.io/bundles/example-fractal-noise/index.html
 
 Please click the ☆ button on GitHub if this repository is useful or interesting. Thank you!
 
-![alt text](https://github.com/klaytonkowalski/example-fractal-noise/blob/main/assets/thumbnail.png?raw=true)
+![alt text](https://github.com/whiteboxdev/example-fractal-noise/blob/main/assets/thumbnail.png?raw=true)
 
 ## Controls
 
